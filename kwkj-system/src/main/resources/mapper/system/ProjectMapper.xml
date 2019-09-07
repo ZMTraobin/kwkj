@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kwkj.system.mapper.ProjectMapper">
+    
+    <resultMap type="Project" id="ProjectResult">
+        <result property="proId"    column="pro_id"    />
+        <result property="proName"    column="pro_name"    />
+        <result property="starTime"    column="star_time"    />
+        <result property="proStatus"    column="pro_status"    />
+        <result property="proDis"    column="pro_dis"    />
+        <result property="proPersonId"    column="pro_person_id"    />
+        <result property="proRemark"    column="pro_remark"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+	
+	<sql id="selectProjectVo">
+        select pro_id, pro_name, star_time, pro_status, pro_dis, pro_person_id, pro_remark, create_by, create_time, update_by, update_time from kwkj_project
+    </sql>
+	
+    <select id="selectProjectList" parameterType="Project" resultMap="ProjectResult">
+        <include refid="selectProjectVo"/>
+        <where>  
+            <if test="proId != null "> and pro_id = #{proId}</if>
+             <if test="proName != null  and proName != '' "> and pro_name = #{proName}</if>
+             <if test="starTime != null "> and star_time = #{starTime}</if>
+             <if test="proStatus != null  and proStatus != '' "> and pro_status = #{proStatus}</if>
+             <if test="proDis != null  and proDis != '' "> and pro_dis = #{proDis}</if>
+             <if test="proPersonId != null "> and pro_person_id = #{proPersonId}</if>
+             <if test="proRemark != null  and proRemark != '' "> and pro_remark = #{proRemark}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectProjectById" parameterType="Integer" resultMap="ProjectResult">
+        <include refid="selectProjectVo"/>
+        where pro_id = #{proId}
+    </select>
+        
+    <insert id="insertProject" parameterType="Project">
+        insert into kwkj_project
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="proId != null  ">pro_id,</if>
+			<if test="proName != null  and proName != ''  ">pro_name,</if>
+			<if test="starTime != null  ">star_time,</if>
+			<if test="proStatus != null  and proStatus != ''  ">pro_status,</if>
+			<if test="proDis != null  and proDis != ''  ">pro_dis,</if>
+			<if test="proPersonId != null  ">pro_person_id,</if>
+			<if test="proRemark != null  and proRemark != ''  ">pro_remark,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="proId != null  ">#{proId},</if>
+			<if test="proName != null  and proName != ''  ">#{proName},</if>
+			<if test="starTime != null  ">#{starTime},</if>
+			<if test="proStatus != null  and proStatus != ''  ">#{proStatus},</if>
+			<if test="proDis != null  and proDis != ''  ">#{proDis},</if>
+			<if test="proPersonId != null  ">#{proPersonId},</if>
+			<if test="proRemark != null  and proRemark != ''  ">#{proRemark},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateProject" parameterType="Project">
+        update kwkj_project
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="proName != null  and proName != ''  ">pro_name = #{proName},</if>
+            <if test="starTime != null  ">star_time = #{starTime},</if>
+            <if test="proStatus != null  and proStatus != ''  ">pro_status = #{proStatus},</if>
+            <if test="proDis != null  and proDis != ''  ">pro_dis = #{proDis},</if>
+            <if test="proPersonId != null  ">pro_person_id = #{proPersonId},</if>
+            <if test="proRemark != null  and proRemark != ''  ">pro_remark = #{proRemark},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+        </trim>
+        where pro_id = #{proId}
+    </update>
+
+	<delete id="deleteProjectById" parameterType="Integer">
+        delete from kwkj_project where pro_id = #{proId}
+    </delete>
+	
+    <delete id="deleteProjectByIds" parameterType="String">
+        delete from kwkj_project where pro_id in 
+        <foreach item="proId" collection="array" open="(" separator="," close=")">
+            #{proId}
+        </foreach>
+    </delete>
+    
+</mapper>

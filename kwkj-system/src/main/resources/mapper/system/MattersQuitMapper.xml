@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kwkj.system.mapper.MattersQuitMapper">
+    
+    <resultMap type="MattersQuit" id="MattersQuitResult">
+        <result property="kwkjMattersQuitid"    column="kwkj_matters_quitid"    />
+        <result property="id"    column="id"    />
+        <result property="department"    column="department"    />
+        <result property="content"    column="content"    />
+        <result property="situation"    column="situation"    />
+        <result property="handover"    column="handover"    />
+        <result property="receive"    column="receive"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+	
+	<sql id="selectMattersQuitVo">
+        select kwkj_matters_quitid, id, department, content, situation, handover, receive, create_by, create_time, update_by, update_time from kwkj_matters_quit
+    </sql>
+	
+    <select id="selectMattersQuitList" parameterType="MattersQuit" resultMap="MattersQuitResult">
+        <include refid="selectMattersQuitVo"/>
+        <where>  
+            <if test="kwkjMattersQuitid != null "> and kwkj_matters_quitid = #{kwkjMattersQuitid}</if>
+             <if test="id != null "> and id = #{id}</if>
+             <if test="department != null  and department != '' "> and department = #{department}</if>
+             <if test="content != null  and content != '' "> and content = #{content}</if>
+             <if test="situation != null  and situation != '' "> and situation = #{situation}</if>
+             <if test="handover != null  and handover != '' "> and handover = #{handover}</if>
+             <if test="receive != null  and receive != '' "> and receive = #{receive}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectMattersQuitById" parameterType="Integer" resultMap="MattersQuitResult">
+        <include refid="selectMattersQuitVo"/>
+        where kwkj_matters_quitid = #{kwkjMattersQuitid}
+    </select>
+        
+    <insert id="insertMattersQuit" parameterType="MattersQuit">
+        insert into kwkj_matters_quit
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="kwkjMattersQuitid != null  ">kwkj_matters_quitid,</if>
+			<if test="id != null  ">id,</if>
+			<if test="department != null  and department != ''  ">department,</if>
+			<if test="content != null  and content != ''  ">content,</if>
+			<if test="situation != null  and situation != ''  ">situation,</if>
+			<if test="handover != null  and handover != ''  ">handover,</if>
+			<if test="receive != null  and receive != ''  ">receive,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="kwkjMattersQuitid != null  ">#{kwkjMattersQuitid},</if>
+			<if test="id != null  ">#{id},</if>
+			<if test="department != null  and department != ''  ">#{department},</if>
+			<if test="content != null  and content != ''  ">#{content},</if>
+			<if test="situation != null  and situation != ''  ">#{situation},</if>
+			<if test="handover != null  and handover != ''  ">#{handover},</if>
+			<if test="receive != null  and receive != ''  ">#{receive},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateMattersQuit" parameterType="MattersQuit">
+        update kwkj_matters_quit
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="id != null  ">id = #{id},</if>
+            <if test="department != null  and department != ''  ">department = #{department},</if>
+            <if test="content != null  and content != ''  ">content = #{content},</if>
+            <if test="situation != null  and situation != ''  ">situation = #{situation},</if>
+            <if test="handover != null  and handover != ''  ">handover = #{handover},</if>
+            <if test="receive != null  and receive != ''  ">receive = #{receive},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+        </trim>
+        where kwkj_matters_quitid = #{kwkjMattersQuitid}
+    </update>
+
+	<delete id="deleteMattersQuitById" parameterType="Integer">
+        delete from kwkj_matters_quit where kwkj_matters_quitid = #{kwkjMattersQuitid}
+    </delete>
+	
+    <delete id="deleteMattersQuitByIds" parameterType="String">
+        delete from kwkj_matters_quit where kwkj_matters_quitid in 
+        <foreach item="kwkjMattersQuitid" collection="array" open="(" separator="," close=")">
+            #{kwkjMattersQuitid}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kwkj.system.mapper.MattersMapper">
+    
+    <resultMap type="Matters" id="MattersResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="personCharge"    column="person_charge"    />
+        <result property="inTime"    column="in_time"    />
+        <result property="regularTime"    column="regular_time"    />
+        <result property="contractEndTime"    column="contract_end_time"    />
+        <result property="idCard"    column="id_card"    />
+        <result property="birthDate"    column="birth_date"    />
+        <result property="age"    column="age"    />
+        <result property="phone"    column="phone"    />
+        <result property="email"    column="email"    />
+        <result property="qq"    column="qq"    />
+        <result property="sex"    column="sex"    />
+        <result property="marryInfo"    column="marry_info"    />
+        <result property="addr"    column="addr"    />
+        <result property="edu"    column="edu"    />
+        <result property="major"    column="major"    />
+        <result property="school"    column="school"    />
+        <result property="proId"    column="pro_id"    />
+        <result property="post"    column="post"    />
+        <result property="salary"    column="salary"    />
+        <result property="bankCardNo"    column="bank_card_no"    />
+        <result property="connectId"    column="connect_id"    />
+        <result property="type"    column="type"    />
+        <result property="status"    column="status"    />
+        <result property="remark"    column="remark"    />
+        <result property="handover"    column="handover"    />
+        <result property="quit"    column="quit"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+	
+	<sql id="selectMattersVo">
+        select id, name, person_charge, in_time, regular_time, contract_end_time, id_card, birth_date, age, phone, email, qq, sex, marry_info, addr, edu, major, school, pro_id, post, salary, bank_card_no, connect_id, type, status, remark, handover, quit, create_by, create_time, update_by, update_time from kwkj_matters
+    </sql>
+	
+    <select id="selectMattersList" parameterType="Matters" resultMap="MattersResult">
+        <include refid="selectMattersVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="personCharge != null  and personCharge != '' "> and person_charge = #{personCharge}</if>
+             <if test="inTime != null "> and in_time = #{inTime}</if>
+             <if test="regularTime != null "> and regular_time = #{regularTime}</if>
+             <if test="contractEndTime != null "> and contract_end_time = #{contractEndTime}</if>
+             <if test="idCard != null  and idCard != '' "> and id_card = #{idCard}</if>
+             <if test="birthDate != null "> and birth_date = #{birthDate}</if>
+             <if test="age != null "> and age = #{age}</if>
+             <if test="phone != null  and phone != '' "> and phone = #{phone}</if>
+             <if test="email != null  and email != '' "> and email = #{email}</if>
+             <if test="qq != null  and qq != '' "> and qq = #{qq}</if>
+             <if test="sex != null  and sex != '' "> and sex = #{sex}</if>
+             <if test="marryInfo != null  and marryInfo != '' "> and marry_info = #{marryInfo}</if>
+             <if test="addr != null  and addr != '' "> and addr = #{addr}</if>
+             <if test="edu != null  and edu != '' "> and edu = #{edu}</if>
+             <if test="major != null  and major != '' "> and major = #{major}</if>
+             <if test="school != null  and school != '' "> and school = #{school}</if>
+             <if test="proId != null "> and pro_id = #{proId}</if>
+             <if test="post != null  and post != '' "> and post = #{post}</if>
+             <if test="salary != null  and salary != '' "> and salary = #{salary}</if>
+             <if test="bankCardNo != null "> and bank_card_no = #{bankCardNo}</if>
+             <if test="connectId != null "> and connect_id = #{connectId}</if>
+             <if test="type != null  and type != '' "> and type = #{type}</if>
+             <if test="status != null  and status != '' "> and status = #{status}</if>
+             <if test="remark != null  and remark != '' "> and remark = #{remark}</if>
+             <if test="handover != null  and handover != '' "> and handover = #{handover}</if>
+             <if test="quit != null  and quit != '' "> and quit = #{quit}</if>
+             <if test="createBy != null  and createBy != '' "> and create_by = #{createBy}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="updateBy != null "> and update_by = #{updateBy}</if>
+             <if test="updateTime != null "> and update_time = #{updateTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectMattersById" parameterType="Integer" resultMap="MattersResult">
+        <include refid="selectMattersVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertMatters" parameterType="Matters">
+        insert into kwkj_matters
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">id,</if>
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="personCharge != null  and personCharge != ''  ">person_charge,</if>
+			<if test="inTime != null  ">in_time,</if>
+			<if test="regularTime != null  ">regular_time,</if>
+			<if test="contractEndTime != null  ">contract_end_time,</if>
+			<if test="idCard != null  and idCard != ''  ">id_card,</if>
+			<if test="birthDate != null  ">birth_date,</if>
+			<if test="age != null  ">age,</if>
+			<if test="phone != null  and phone != ''  ">phone,</if>
+			<if test="email != null  and email != ''  ">email,</if>
+			<if test="qq != null  and qq != ''  ">qq,</if>
+			<if test="sex != null  and sex != ''  ">sex,</if>
+			<if test="marryInfo != null  and marryInfo != ''  ">marry_info,</if>
+			<if test="addr != null  and addr != ''  ">addr,</if>
+			<if test="edu != null  and edu != ''  ">edu,</if>
+			<if test="major != null  and major != ''  ">major,</if>
+			<if test="school != null  and school != ''  ">school,</if>
+			<if test="proId != null  ">pro_id,</if>
+			<if test="post != null  and post != ''  ">post,</if>
+			<if test="salary != null  and salary != ''  ">salary,</if>
+			<if test="bankCardNo != null  ">bank_card_no,</if>
+			<if test="connectId != null  ">connect_id,</if>
+			<if test="type != null  and type != ''  ">type,</if>
+			<if test="status != null  and status != ''  ">status,</if>
+			<if test="remark != null  and remark != ''  ">remark,</if>
+			<if test="handover != null  and handover != ''  ">handover,</if>
+			<if test="quit != null  and quit != ''  ">quit,</if>
+			<if test="createBy != null  and createBy != ''  ">create_by,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="updateBy != null  ">update_by,</if>
+			<if test="updateTime != null  ">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">#{id},</if>
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="personCharge != null  and personCharge != ''  ">#{personCharge},</if>
+			<if test="inTime != null  ">#{inTime},</if>
+			<if test="regularTime != null  ">#{regularTime},</if>
+			<if test="contractEndTime != null  ">#{contractEndTime},</if>
+			<if test="idCard != null  and idCard != ''  ">#{idCard},</if>
+			<if test="birthDate != null  ">#{birthDate},</if>
+			<if test="age != null  ">#{age},</if>
+			<if test="phone != null  and phone != ''  ">#{phone},</if>
+			<if test="email != null  and email != ''  ">#{email},</if>
+			<if test="qq != null  and qq != ''  ">#{qq},</if>
+			<if test="sex != null  and sex != ''  ">#{sex},</if>
+			<if test="marryInfo != null  and marryInfo != ''  ">#{marryInfo},</if>
+			<if test="addr != null  and addr != ''  ">#{addr},</if>
+			<if test="edu != null  and edu != ''  ">#{edu},</if>
+			<if test="major != null  and major != ''  ">#{major},</if>
+			<if test="school != null  and school != ''  ">#{school},</if>
+			<if test="proId != null  ">#{proId},</if>
+			<if test="post != null  and post != ''  ">#{post},</if>
+			<if test="salary != null  and salary != ''  ">#{salary},</if>
+			<if test="bankCardNo != null  ">#{bankCardNo},</if>
+			<if test="connectId != null  ">#{connectId},</if>
+			<if test="type != null  and type != ''  ">#{type},</if>
+			<if test="status != null  and status != ''  ">#{status},</if>
+			<if test="remark != null  and remark != ''  ">#{remark},</if>
+			<if test="handover != null  and handover != ''  ">#{handover},</if>
+			<if test="quit != null  and quit != ''  ">#{quit},</if>
+			<if test="createBy != null  and createBy != ''  ">#{createBy},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="updateBy != null  ">#{updateBy},</if>
+			<if test="updateTime != null  ">#{updateTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateMatters" parameterType="Matters">
+        update kwkj_matters
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="personCharge != null  and personCharge != ''  ">person_charge = #{personCharge},</if>
+            <if test="inTime != null  ">in_time = #{inTime},</if>
+            <if test="regularTime != null  ">regular_time = #{regularTime},</if>
+            <if test="contractEndTime != null  ">contract_end_time = #{contractEndTime},</if>
+            <if test="idCard != null  and idCard != ''  ">id_card = #{idCard},</if>
+            <if test="birthDate != null  ">birth_date = #{birthDate},</if>
+            <if test="age != null  ">age = #{age},</if>
+            <if test="phone != null  and phone != ''  ">phone = #{phone},</if>
+            <if test="email != null  and email != ''  ">email = #{email},</if>
+            <if test="qq != null  and qq != ''  ">qq = #{qq},</if>
+            <if test="sex != null  and sex != ''  ">sex = #{sex},</if>
+            <if test="marryInfo != null  and marryInfo != ''  ">marry_info = #{marryInfo},</if>
+            <if test="addr != null  and addr != ''  ">addr = #{addr},</if>
+            <if test="edu != null  and edu != ''  ">edu = #{edu},</if>
+            <if test="major != null  and major != ''  ">major = #{major},</if>
+            <if test="school != null  and school != ''  ">school = #{school},</if>
+            <if test="proId != null  ">pro_id = #{proId},</if>
+            <if test="post != null  and post != ''  ">post = #{post},</if>
+            <if test="salary != null  and salary != ''  ">salary = #{salary},</if>
+            <if test="bankCardNo != null  ">bank_card_no = #{bankCardNo},</if>
+            <if test="connectId != null  ">connect_id = #{connectId},</if>
+            <if test="type != null  and type != ''  ">type = #{type},</if>
+            <if test="status != null  and status != ''  ">status = #{status},</if>
+            <if test="remark != null  and remark != ''  ">remark = #{remark},</if>
+            <if test="handover != null  and handover != ''  ">handover = #{handover},</if>
+            <if test="quit != null  and quit != ''  ">quit = #{quit},</if>
+            <if test="createBy != null  and createBy != ''  ">create_by = #{createBy},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="updateBy != null  ">update_by = #{updateBy},</if>
+            <if test="updateTime != null  ">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteMattersById" parameterType="Integer">
+        delete from kwkj_matters where id = #{id}
+    </delete>
+	
+    <delete id="deleteMattersByIds" parameterType="String">
+        delete from kwkj_matters where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

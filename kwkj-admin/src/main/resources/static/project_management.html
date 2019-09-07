@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>项目管理</title>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link href="css/project_management.css" type="text/css" rel="stylesheet" />	
+	
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	 <style>
+	 	body{
+	 		margin: 20px;
+	 		background-color: #E1F1FE;
+	 	}
+	 </style>
+	
+	</head>
+	<body>
+                                负责人&nbsp; <input type="text" size="10"/>&nbsp; &nbsp; 
+		        关键字 <input type="text" size="30" placeholder="客户名称或项目需求关键字" /> 
+		        <input type="button" value="搜索" class="search" /> 
+			<input type="button" value="新建项目"  class="search" data-toggle="modal" data-target="#myModal" style="width:120px; height: 25px;border-radius: 5px; margin:20px 0px 10px 220px;" />
+			<br />
+			<table width="580" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+				<tr>
+					<td class="yes">项目名称</td>
+					<td class="yes">客户名称</td>
+					<td class="yes">负责人</td>
+					<td class="yes">项目状态 </td>
+					<td class="yes">起止时间</td>
+					<td></td>
+				</tr>
+				
+			</table>
+				
+		<script>
+			$(".search").click(function(){
+				//alert("aaa");
+			 $.ajax({
+            //这里填写你在服务器上面的IP/域名         后台提供接口
+            url:" ",
+            //请求方式
+            method: "post",
+            //请求参数的格式
+            data: JSON.stringify(data),
+            //内容结构
+            contentType: "application/json;charset=UTF-8",
+            //请求数的类型
+            dataType: "json",
+            //返回值
+            success: function (data) {
+                if (data) {
+                    console.log(data)
+                }
+            },
+            error: function () {
+                
+            }
+            
+			})
+		</script>		
+			
+			
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:white;">
+							
+			<div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新建项目</h4>
+            </div>
+            <div class="modal-body">
+            	<table>
+				<tr>
+					<td>项目名称</td>
+					<td> <input type="text" size="40" style="height: 25px;"/> </td>
+				</tr>
+				<tr>
+					<td>客户名称</td>
+					<td> <input type="text" size="40" style="height: 25px;" /> </td>
+				</tr>
+				<tr>
+					<td>负责人</td>
+					<td> <input type="text" size="40" style="height: 25px;"/> </td>
+				</tr>
+				<tr>
+					<td>项目起始时间</td>
+					<td> <input type="text" size="40" style="height: 25px;"/> </td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top">客户要求</td>
+					<td> <textarea cols="29" rows="5"></textarea> </td>
+				</tr>
+				<tr>
+					<td style="vertical-align: top">其他备注</td>
+					<td> <textarea cols="29" rows="5"></textarea> </td>
+				</tr>
+			
+			</table>
+            	
+            </div>
+            
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
+            </div>
+				
+			</div>
+		</div>	
+	</div>		
+	</body>
+</html>
