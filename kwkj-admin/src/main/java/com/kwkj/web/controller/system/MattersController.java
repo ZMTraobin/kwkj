@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -38,9 +39,9 @@ public class MattersController extends BaseController
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public TableDataInfo list(Matters matters)
+	public TableDataInfo list(@RequestBody Matters matters)
 	{
-		startPage();
+		//startPage();
         List<Matters> list = mattersService.selectMattersList(matters);
 		return getDataTable(list);
 	}
