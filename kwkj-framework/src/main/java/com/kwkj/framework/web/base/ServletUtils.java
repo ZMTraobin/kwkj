@@ -38,7 +38,7 @@ public class ServletUtils
      */
     public static Integer getParameterToInt(String name)
     {
-        return Integer.parseInt(getRequest().getParameter(name));
+        return Integer.parseInt(getRequest().getParameter(name) == null ? "0" : getRequest().getParameter(name));
     }
 
     /**

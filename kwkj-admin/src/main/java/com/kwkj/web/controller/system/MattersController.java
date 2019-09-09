@@ -41,7 +41,7 @@ public class MattersController extends BaseController
 	@ResponseBody
 	public TableDataInfo list(@RequestBody Matters matters)
 	{
-		//startPage();
+		startPage();
         List<Matters> list = mattersService.selectMattersList(matters);
 		return getDataTable(list);
 	}

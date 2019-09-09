@@ -15,9 +15,6 @@ public class BaseEntity implements Serializable
 {
     private static final long serialVersionUID = 1L;
     
-    private Integer pageNum;
-    
-    private Integer pageSize;
 
     /** 搜索值 */
     private String searchValue;
@@ -116,20 +113,5 @@ public class BaseEntity implements Serializable
         this.params = params;
     }
 
-	public Integer getPageNum() {
-		return pageNum;
-	}
-
-	public void setPageNum(Integer pageNum) {
-		this.pageNum = pageNum;
-	}
-
-	public Integer getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
     
 }

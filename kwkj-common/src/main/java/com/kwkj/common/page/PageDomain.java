@@ -37,6 +37,8 @@ public class PageDomain
 
     public void setPageNum(Integer pageNum)
     {
+    	if(!(pageNum > 0))
+    		pageNum = 1;
         this.pageNum = pageNum;
     }
 
@@ -47,6 +49,8 @@ public class PageDomain
 
     public void setPageSize(Integer pageSize)
     {
+    	if(!(pageSize > 0))
+    		pageSize = 10;
         this.pageSize = pageSize;
     }
 
