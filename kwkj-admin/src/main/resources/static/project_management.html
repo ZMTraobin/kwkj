@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -19,12 +20,14 @@
 	
 	</head>
 	<body>
-                                负责人&nbsp; <input type="text" size="10"/>&nbsp; &nbsp; 
-		        关键字 <input type="text" size="30" placeholder="客户名称或项目需求关键字" /> 
-		        <input type="button" value="搜索" class="search" /> 
+	      
+                       负责人&nbsp; <input type="text" size="10" id="fzr"/>&nbsp; &nbsp; 
+		        关键字 <input type="text" size="30" placeholder="客户名称或项目需求关键字" id="ming"/> 
+		        <input type="submit" value="搜索"  id="search"/> 
+		        
 			<input type="button" value="新建项目"  class="search" data-toggle="modal" data-target="#myModal" style="width:120px; height: 25px;border-radius: 5px; margin:20px 0px 10px 220px;" />
 			<br />
-			<table width="580" cellpadding="0" cellspacing="0" style="border-collapse:collapse;">
+			<table width="580" cellpadding="0" cellspacing="0" style="border-collapse:collapse;" id="table">
 				<tr>
 					<td class="yes">项目名称</td>
 					<td class="yes">客户名称</td>
@@ -36,18 +39,64 @@
 				
 			</table>
 				
-		<script>
-		
-			$(".search").click(function(){
-				alert("aaa");
+			
+			
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:white;">				
+	<div class="modal-dialog" >
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新建项目</h4>
+        <form id="sortForm">
+            <div class="modal-body">
+            	<table>
+				<tr>
+					<td>项目名称</td>
+					<td> <input type="text" size="40" style="height: 25px;" id="proName" /> </td>
+				</tr>
+				<tr>
+					<td>负责人</td>
+					<td> <input type="text" size="40" style="height: 25px;" id="proPersonId" /> </td>
+				</tr>
+				<tr>
+					<td>项目起始时间</td>
+					<td> <input type="text" size="40" style="height: 25px;" id="starTime" /> </td>
+				</tr>
+				<tr>
+					<td type="text" style="vertical-align: top" >客户要求</td>
+					<td> <textarea cols="29" rows="5" id="proDis"/></textarea> </td>
+				</tr>
+				<tr>
+					<td type="text" style="vertical-align: top" >其他备注</td>
+					<td> <textarea cols="29" rows="5" id="proRemark" /></textarea> </td>
+				</tr>
+			</table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary"  data-dismiss="modal" id="reject"></input>
+            </div>
+           </form>
+         </div>
+			</div>
+		</div>
+	</div>
+	
+	
+			<script>
+			$("#search").click(function(){
+				//alert("aaa");
+				var intp = $("#ming").val();
+				var fzr =$("#fzr").val();
 				var data = {
-						"pageNum":1,
-						"pageSize":10,
-						"id":1
+					"proDis":intp,
+					"proPersonId":fzr
 				}
+				alert(intp)
+				alert(fzr)
 			 $.ajax({
             //这里填写你在服务器上面的IP/域名         后台提供接口
-            url:"system/matters/list",
+            url:"/system/project/list",
             //请求方式
             method: "post",
             //请求参数的格式
@@ -57,63 +106,91 @@
             //请求数的类型
             dataType: "json",
             //返回值
-            success: function (data) {
-               
+            success: function (msg) {
+            	console.log(msg.code)
+            	console.log(msg)
+            	console.log(msg.rows)
+            	console.log(msg.rows[0])
+                if (msg) {
+                	var list=msg.rows;
+                	var picHtml="";
+                    $("#startTable").empty();
+                    $("#endTable").empty();
+                    for(var i=0;i<list.length;i++){
+                       	picHtml='<tr>';
+                       	picHtml+='<td>'+msg.rows[i].proName+'</td>';
+                       	picHtml+='<td>'+msg.rows[i].proPersonId+'</td>';
+                       	picHtml+='<td>'+msg.rows[i].proStatus+'</td>';
+                       	picHtml+='<td>'+msg.rows[i].starTime+'</td>';
+                    //	picHtml+='<td>'++'</td>';
+                       	picHtml+='</tr>';                  	                                        
+                     $("#table").append(picHtml)
+                      //  alert(picHtml)
+                }
+              }
             },
             error: function () {
                 
             }
-			 })
-			})
+			});
+			});
+			
+			$("#reject").click(function(){
+				var proName = $("#proName").val();
+				var starTime =$("#starTime").val();
+				var proRemark =$("#proRemark").val();
+				var proDis =$("#proDis").val();
+				var proPersonId =$("#proPersonId").val();
+				var data={
+					"proName":proName,
+					"starTime":starTime,
+					"proRemark":proRemark,
+					"proDis":proDis,
+					"proPersonId":proPersonId
+				}
+				alert(proDis)
+			//alert("aaa");
+			 $.ajax({
+            //这里填写你在服务器上面的IP/域名         后台提供接口
+            url:"/system/project/add",
+            //请求方式
+            method: "post",
+            //请求参数的格式
+            data: JSON.stringify(data),
+            //内容结构
+            contentType: "application/json;charset=UTF-8",
+            //请求数的类型
+            dataType: "json",
+            //返回值
+            success: function (msg) {
+                if (msg) {
+                	var list=data;
+                	var picHtml="";
+                    $("#startTable").empty();
+                    $("#endTable").empty();
+                    for(var i=0;i<list.length;i++){
+                       	picHtml='<tr>';
+                       	picHtml+='<td>'+data[i].proName+'</td>';
+                       	picHtml+='<td>'+data[i].proPersonId+'</td>';
+                       	picHtml+='<td>'+data[i].proStatus+'</td>';
+                       	picHtml+='<td>'+data[i].starTime+'</td>';
+                    //	picHtml+='<td>'++'</td>';
+                       	picHtml+='</tr>';                  	                                        
+                     $("#table").append(picHtml)
+                      //  alert(picHtml)
+                    }
+                    }
+                },
+            error: function () {
+                
+            }
+			});
+						});
 		</script>		
-			
-			
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:white;">
-							
-			<div class="modal-dialog" >
-        <div class="modal-content" >
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">新建项目</h4>
-            </div>
-            <div class="modal-body">
-            	<table>
-				<tr>
-					<td>项目名称</td>
-					<td> <input type="text" size="40" style="height: 25px;"/> </td>
-				</tr>
-				<tr>
-					<td>客户名称</td>
-					<td> <input type="text" size="40" style="height: 25px;" /> </td>
-				</tr>
-				<tr>
-					<td>负责人</td>
-					<td> <input type="text" size="40" style="height: 25px;"/> </td>
-				</tr>
-				<tr>
-					<td>项目起始时间</td>
-					<td> <input type="text" size="40" style="height: 25px;"/> </td>
-				</tr>
-				<tr>
-					<td style="vertical-align: top">客户要求</td>
-					<td> <textarea cols="29" rows="5"></textarea> </td>
-				</tr>
-				<tr>
-					<td style="vertical-align: top">其他备注</td>
-					<td> <textarea cols="29" rows="5"></textarea> </td>
-				</tr>
-			
-			</table>
-            	
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">提交</button>
-            </div>
-				
-			</div>
-		</div>	
-	</div>		
+	
+	
+	
+	
+	
 	</body>
 </html>
