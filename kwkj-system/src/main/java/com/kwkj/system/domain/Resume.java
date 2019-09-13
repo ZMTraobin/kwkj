@@ -53,14 +53,6 @@ public class Resume extends BaseEntity
 	private String salary;
 	/** 项目主键 */
 	private Integer proId;
-	/** 创建人 */
-	private String createBy;
-	/** 创建时间 */
-	private Date createTime;
-	/** 修改人 */
-	private String updateBy;
-	/** 修改时间 */
-	private Date updateTime;
 
 	public void setResId(Integer resId) 
 	{
@@ -223,42 +215,6 @@ public class Resume extends BaseEntity
 	public Integer getProId() 
 	{
 		return proId;
-	}
-	public void setCreateBy(String createBy) 
-	{
-		this.createBy = createBy;
-	}
-
-	public String getCreateBy() 
-	{
-		return createBy;
-	}
-	public void setCreateTime(Date createTime) 
-	{
-		this.createTime = createTime;
-	}
-
-	public Date getCreateTime() 
-	{
-		return createTime;
-	}
-	public void setUpdateBy(String updateBy) 
-	{
-		this.updateBy = updateBy;
-	}
-
-	public String getUpdateBy() 
-	{
-		return updateBy;
-	}
-	public void setUpdateTime(Date updateTime) 
-	{
-		this.updateTime = updateTime;
-	}
-
-	public Date getUpdateTime() 
-	{
-		return updateTime;
 	}
 
     public String toString() {

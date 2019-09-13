@@ -37,14 +37,6 @@ public class User extends BaseEntity
 	private String addr;
 	/** 邮箱 */
 	private String eamil;
-	/** 创建人 */
-	private String createBy;
-	/** 创建时间 */
-	private Date createTime;
-	/** 修改人 */
-	private Date updateBy;
-	/** 修改时间 */
-	private Date updateTime;
 
 	public void setUserId(Integer userId) 
 	{
@@ -135,42 +127,6 @@ public class User extends BaseEntity
 	public String getEamil() 
 	{
 		return eamil;
-	}
-	public void setCreateBy(String createBy) 
-	{
-		this.createBy = createBy;
-	}
-
-	public String getCreateBy() 
-	{
-		return createBy;
-	}
-	public void setCreateTime(Date createTime) 
-	{
-		this.createTime = createTime;
-	}
-
-	public Date getCreateTime() 
-	{
-		return createTime;
-	}
-	public void setUpdateBy(Date updateBy) 
-	{
-		this.updateBy = updateBy;
-	}
-
-	/*public Date getUpdateBy() 
-	{
-		return updateBy;
-	}*/
-	public void setUpdateTime(Date updateTime) 
-	{
-		this.updateTime = updateTime;
-	}
-
-	public Date getUpdateTime() 
-	{
-		return updateTime;
 	}
 
     public String toString() {

@@ -21,14 +21,6 @@ public class Role extends BaseEntity
 	private Integer roleId;
 	/** 角色名 */
 	private String roleName;
-	/** 创建人 */
-	private String createBy;
-	/** 创建时间 */
-	private Date createTime;
-	/** 修改人 */
-	private Date updateBy;
-	/** 修改时间 */
-	private Date updateTime;
 
 	public void setRoleId(Integer roleId) 
 	{
@@ -47,42 +39,6 @@ public class Role extends BaseEntity
 	public String getRoleName() 
 	{
 		return roleName;
-	}
-	public void setCreateBy(String createBy) 
-	{
-		this.createBy = createBy;
-	}
-
-	public String getCreateBy() 
-	{
-		return createBy;
-	}
-	public void setCreateTime(Date createTime) 
-	{
-		this.createTime = createTime;
-	}
-
-	public Date getCreateTime() 
-	{
-		return createTime;
-	}
-	public void setUpdateBy(Date updateBy) 
-	{
-		this.updateBy = updateBy;
-	}
-
-	/*public Date getUpdateBy() 
-	{
-		return updateBy;
-	}*/
-	public void setUpdateTime(Date updateTime) 
-	{
-		this.updateTime = updateTime;
-	}
-
-	public Date getUpdateTime() 
-	{
-		return updateTime;
 	}
 
     public String toString() {

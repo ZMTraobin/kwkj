@@ -1,10 +1,12 @@
 package com.kwkj.system.service.impl;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.kwkj.system.mapper.UserRoleMapper;
+
 import com.kwkj.system.domain.UserRole;
+import com.kwkj.system.mapper.UserRoleMapper;
 import com.kwkj.system.service.IUserRoleService;
 
 /**
