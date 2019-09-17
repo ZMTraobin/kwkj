@@ -25,6 +25,11 @@
 .table td {
 	line-height: 25px;
 }
+.class{
+   height:25px;
+   line-height:25px;
+   text-align:center;
+}
 </style>
 
 </head>
@@ -84,24 +89,22 @@
 					<option value="5">未通过</option>
 			</select></td>
 			<td>&nbsp;&nbsp;&nbsp;</td>
-			<td><input type="button" value="搜索" class="search"
-				style="line-height: 25px;" /></td>
+			<td><input type="button" value="搜索" class="search"/></td>
 		</tr>
 
 	</table>
 	<br />
-	<table width="750"  cellspacing="0"
-		style="border-collapse: collapse;" id="table">
+	<table   cellspacing="0" style="border-collapse: collapse;" id="table">
 		<tr>
-			<td class="yes" style="width: 80px;height: 25px; line-height: 25px;">姓名</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">邀请职位</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">当前状态</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">面试项目</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">期望薪资</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">电话号码</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">更新时间</td>
-			<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">面试反馈</td>
-			<td class="yes"style="width: 160px;height: 25px; line-height: 25px;">面试时间安排</td>
+			<td class="yes" >姓名</td>
+			<td class="yes">邀请职位</td>
+			<td class="yes">当前状态</td>
+			<td class="yes">面试项目</td>
+			<td class="yes">期望薪资</td>
+			<td class="yes">电话号码</td>
+			<td class="yes">更新时间</td>
+			<td class="yes">面试反馈</td>
+			<td class="yes">面试时间安排</td>
 
 		</tr>
 
@@ -152,31 +155,31 @@
 												var picHtml = "";
 												for (var i = 0; i < list.length; i++) {
 													picHtml = '<tr>';
-													picHtml += '<td class="yes" style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].name
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].post
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].status
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].proName
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].salary
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].phone
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].updateTime
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;">'
+													picHtml += '<td class="yes">'
 															+ mg.rows[i].resFeedback
 															+ '</td>';
-													picHtml += '<td class="yes"style="width: 80px;height: 25px; line-height: 25px;"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div></td>';
+													picHtml += '<td class="yes"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div></td>';
 													picHtml += '</tr>';
 													$("#table").append(picHtml)
 													alert(picHtml)

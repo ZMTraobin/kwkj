@@ -2,6 +2,25 @@
 *{
 margin:0; padding:0;
 }
+.search{
+	margin-left:20px;
+	background-color: #d9d9d9; 
+	line-height: 22px;
+	border-radius: 5px;
+	width:60px;
+    border: 1px solid #808080;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    float: left;
+}
+#work,#time,#action{
+	margin-left:6px;
+	border:1px solid #808080;
+}
 body, html body {
     color: #262626;
     font: 12px/1.5 Microsoft YaHei,tahoma,arial,Hiragino Sans GB,sans-serif;
@@ -24,8 +43,8 @@ caption, th { text-align: left; }
 .clearfix { clear: both; zoom:1;}
 .clearfix:after { display: block; clear: both; content: "\0020"; visibility: hidden; height: 0; }
 .mycontainer{
-	width:960px;
-	margin:40px auto;
+	width:140px;
+	/*margin:40px auto;*/
 }
 .dateTimeWrap{
     display: none;

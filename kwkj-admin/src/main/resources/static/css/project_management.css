@@ -1,7 +1,9 @@
 table td{
-	line-height: 35px;
+	line-height: 25px;
 	text-align: center;
 }
 .yes{
 	border: solid #000000 1px;
+	width:100px;
+
 }

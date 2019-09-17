@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>面试管理</title>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<style>
+		body {
+			margin: 20px;
+			background-color: #E1F1FE;
+		}
+
+		td {
+			padding: 8px;
+		}
+
+		table td {
+			 /* line-height: 5px; */
+			text-align:center;
+		}
+
+	</style>
+
+</head>
+
+<body>
+	<form>
+		<table>
+			<tr>
+				<td>职位&nbsp;&nbsp;&nbsp; <input type="text" size="30" id="zw" /> </td>
+				<td>联系人&nbsp;&nbsp;&nbsp; <input type="text" size="25" id="lxr" /> </td>
+			</tr>
+			<tr>
+				<td>候选人&nbsp;&nbsp;&nbsp;<input type="text" size="30" id="hxr" /> </td>
+				<td>项目名称&nbsp;&nbsp;&nbsp;<input type="text" size="25" id="xm" /> </td>
+			</tr>
+
+			<tr>
+				<td>面试时间
+					<select id="time" style="width: 90px;">
+						<option value="1" selected="selected">不限</option>
+						<option value="2">今天</option>
+						<option value="3">以后</option>
+						<option value="4">以前</option>
+					</select>
+				</td>
+				<td>
+					<input name="act" type="radio" value="1" checked="checked" />只看已面试的
+					<input name="act" type="radio" value="2" />只看未面试的
+					<input name="act" type="radio" value="3" />多次面试
+					<input name="act" type="radio" value="4" />全部
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4" style="text-align: center;">
+					<input type="reset" value="重置" style="width: 80px; margin-right: 20px;" />
+					<input type="button" value="搜素" style="width: 80px; margin-left: 20px;" id="search" />
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" value="新建面试信息" class="search2" data-toggle="modal" data-target="#myModal"
+						style="width:120px; height: 25px;border-radius: 5px; margin:20px 0px 10px 220px;" /></td>
+			</tr>
+		</table>
+
+
+		<table cellspacing="0" style="border-collapse:collapse; " id="table">
+			<tr>
+				<td class="yes">面试时间</td>
+				<td class="yes">候选人</td>
+				<td class="yes">电话</td>
+				<td class="yes">状态</td>
+				<td class="yes">面试公司</td>
+				<td class="yes">更新时间</td>
+				<td class="yes">是否通过面试</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td colspan="8">
+					<input type="button" value="提交offer" style="width: 100px; " />
+				</td>
+			</tr>
+		</table>
+
+
+	</form>
+
+	<script>
+		// alert("12345678");
+		$("#search").click(function () {
+			alert("111")
+			console.log(111)
+		});
+
+		$("#search").click(function () {
+			//alert("aaa");
+			var zw = $("#zw").val();
+			var lxr = $("#lxr").val();
+			var hxr = $("#hxr").val();
+			var xm = $("#xm").val();
+			var time = $("#time").find("option:selected").attr("value");
+			var cot = $("input[name=act]:checked").val();
+			var data = {
+				"post": zw,
+				"proPersonId;": lxr,
+				"name": hxr,
+				"proName": xm,
+				"interview": time,
+				"count": cot
+			}
+
+			$.ajax({
+				//这里填写你在服务器上面的IP/域名         后台提供接口
+				url: "/system/resume/list",
+				//请求方式
+				method: "post",
+				//请求参数的格式
+				data: JSON.stringify(data),
+				//内容结构
+				contentType: "application/json;charset=UTF-8",
+				//请求数的类型
+				dataType: "json",
+				//返回值
+				success: function (msg) {
+					//console.log(msg.code)
+					console.log(msg)
+					//console.log(msg.rows)
+					//console.log(msg.rows[0])
+					if (msg) {
+						var list = msg.rows;
+						var picHtml = "";
+						for (var i = 0; i < list.length; i++) {
+							picHtml = '<tr>';
+							picHtml += '<td>' + msg.rows[i].interview + '</td>';
+							picHtml += '<td>' + msg.rows[i].name + '</td>';
+							picHtml += '<td>' + msg.rows[i].phone + '</td>';
+							picHtml += '<td>' + msg.rows[i].status + '</td>';
+							picHtml += '<td>' + msg.rows[i].proName; +'</td>';
+							picHtml += '<td>' + msg.rows[i].updateTime; +'</td>';
+							picHtml += '<td>' + msg.rows[i].interviewFeedback; +'</td>';
+							picHtml += '<td>' + '<input type="button" value="查看面试邀请" style="width:100px; border-radius: 5px; " />' + '<td>'
+							picHtml += '</tr>'; 
+							
+							//149行有问题，引号的问题 168行没写等于号170行有问题没写$,22行有问题 分号不对，注释不对css注释不是//
+							$("#table").append(picHtml)
+							//  alert(picHtml)
+						}
+					}
+				},
+				error: function () {
+
+				}
+			});
+		});
+
+		$("#reject").click(function () {
+			var name = $("#name").val();
+			var proName = $("#proName").val();
+			var post = $("#post").val();
+			var phone = $("#phone").val();
+			var starTime = $("#starTime").val();
+			var proPersonId = $("#proPersonId").val();
+			var data = {
+				"name": name,
+				"proName": proName,
+				"post": post,
+				"phone": phone,
+				"starTime": starTime,
+				"proPersonId": proPersonId
+			}
+			alert(proDis)
+			//alert("aaa");
+			$.ajax({
+				//这里填写你在服务器上面的IP/域名         后台提供接口
+				url: "/system/project/add",
+				//请求方式
+				method: "post",
+				//请求参数的格式
+				data: JSON.stringify(data),
+				//内容结构
+				contentType: "application/json;charset=UTF-8",
+				//请求数的类型
+				dataType: "json",
+				//返回值
+				success: function (msg) {
+					if (msg) {
+						var list = msg.data;
+						var picHtml = "";
+						for (var i = 0; i < list.length; i++) {
+							picHtml = '<tr>';
+							picHtml += '<td>' + msg.rows[i].name + '</td>';
+							picHtml += '<td>' + msg.rows[i].proName + '</td>';
+							picHtml += '<td>' + msg.rows[i].post + '</td>';
+							picHtml += '<td>' + msg.rows[i].phone + '</td>';
+							picHtml += '<td>' + msg.rows[i].starTime + '</td>';
+							picHtml += '<td>' + msg.rows[i].proPersonId + '</td>';
+							picHtml += '</tr>';
+							$("#table").append(picHtml)
+							//  alert(picHtml)
+						}
+					}
+				},
+				error: function () {
+
+				}
+			});
+		});
+	</script>
+
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		style="background-color:white;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">新建面试信息</h4>
+					<form id="sortForm">
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>姓名</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="name" /> </td>
+								</tr>
+								<tr>
+									<td>项目</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="proName" /> </td>
+								</tr>
+								<tr>
+									<td>职位</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="post" /> </td>
+								</tr>
+								<tr>
+									<td>电话</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="phone" /> </td>
+								</tr>
+								<tr>
+									<td>面试时间</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="starTime" /> </td>
+								</tr>
+								<tr>
+									<td>联系人</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="proPersonId" /> </td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<input type="submit" class="btn btn-primary" data-dismiss="modal" id="reject"></input>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
