@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简历反馈</title>
+			<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		<style>
+			body {
+			margin: 20px;
+			background-color: #E1F1FE;
+		}
+			.one td{
+				padding-right: 50px;
+			}
+			.yes{
+               	border: solid #000000 1px;
+               	align-content: center;
+               }
+            .tow td{
+             	text-align: center;
+             } 
+		</style>
+	</head>
+	<body>
+			
+			<table class="one">
+				<tr>
+					<td>项目名称 &nbsp;&nbsp;<input type="text" placeholder="输入项目名称" size="30" id="pro"/> </td>
+					<td>推送人 &nbsp;&nbsp;<input type="text"  size="25" id="name" /> </td>
+				</tr>
+				<tr>
+					<td>职位&nbsp;&nbsp;<input type="text"  size="25" id="zw"/> </td>
+					<td>推送时间&nbsp;&nbsp;
+						<input type="text"  size="25" id="time"/>
+					</td>					
+				</tr>
+				<tr><td colspan="2" style="text-align: center;"> 
+				        <input type="button" value="搜索" id="ss" style="width:80px; border-radius: 4px; height: 25px; " />
+					</td>
+				</tr>
+			</table>
+			<br />
+			 <table class="tow" cellspacing="0" style="border-collapse:collapse; " id="table">
+			 	<tr>
+			 		<td class="yes" style="width: 70px;">姓名</td>
+			 		<td class="yes" style="width: 70px;">职位</td>
+			 		<td class="yes" style="width: 70px;">推送项目</td>
+			 		<td class="yes" style="width: 70px;">招聘专员</td>
+			 		<td class="yes" style="width: 70px;">期望薪资</td>
+			 		<td class="yes" style="width: 70px;">推送日期</td>
+			 		<td class="yes" style="width: 70px;">简历反馈</td>
+			 		<td class="yes" style="width: 70px;">备注</td>
+			 	</tr>
+			 
+			 </table>
+			
+<script>
+		$("#ss").click(function(){
+			var zw=$("#zw").val();
+			var name=$("#name").val();
+			var pro=$("#pro").val();
+			var time=$("#time").val();
+			var data={
+				    "proId":pro,
+				    "personCharge":name,
+					"post":zw,					
+					"interview":time			
+			}
+			
+			$.ajax({
+				//这里填写你在服务器上面的IP/域名         后台提供接口
+				url: "/system/resume/list",
+				//请求方式
+				method: "post",
+				//请求参数的格式
+				data: JSON.stringify(data),
+				//内容结构
+				contentType: "application/json;charset=UTF-8",
+				//请求数的类型
+				dataType: "json",
+				//返回值
+				success: function (msg) {
+					if (msg) {
+						var list = msg.rows;
+						var picHtml = "";
+						for (var i = 0; i < list.length; i++) {
+							picHtml = '<tr>';
+							picHtml += '<td class="yes">' + msg.rows[i].name + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].post + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].proId + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].personCharge + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].salary + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].interview + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].resFeedback + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].remark + '</td>';
+							picHtml += '<td>' +' <input type="button"  value="修改" /> ' + '</td>';
+							picHtml += '</tr>';
+							$("#table").append(picHtml)
+							//  alert(picHtml)
+						}
+					}
+				},
+				error: function () {
+
+				}
+			});
+			
+		});
+		
+		$("#new").click(function(){
+			var name=$("#name").val();
+			var action=$("#action").find("option:selected").attr("value");
+			var post=$("#post").val();
+			var salary=$("#salary").val();
+			var pro=$("#pro").val();
+			var time=$("#time").val();
+			var data={
+					"name":name,
+					"status":action,
+					"post":post,
+					"salary":salary,
+					"proId":pro,
+					"inTime":time
+			}
+			
+		});
+		
+	</script>
+
+	</body>
+</html>

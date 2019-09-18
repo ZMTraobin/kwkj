@@ -24,6 +24,10 @@
 			text-align:center;
 		}
 
+ .yes{
+	border: solid #000000 1px;
+	width:100px;
+}
 	</style>
 
 </head>
@@ -80,13 +84,9 @@
 				<td class="yes">是否通过面试</td>
 				<td></td>
 			</tr>
-			<tr>
-				<td colspan="8">
-					<input type="button" value="提交offer" style="width: 100px; " />
-				</td>
-			</tr>
+			
 		</table>
-
+<input type="button" value="提交offer" style="width: 100px; " />
 
 	</form>
 
@@ -136,13 +136,13 @@
 						var picHtml = "";
 						for (var i = 0; i < list.length; i++) {
 							picHtml = '<tr>';
-							picHtml += '<td>' + msg.rows[i].interview + '</td>';
-							picHtml += '<td>' + msg.rows[i].name + '</td>';
-							picHtml += '<td>' + msg.rows[i].phone + '</td>';
-							picHtml += '<td>' + msg.rows[i].status + '</td>';
-							picHtml += '<td>' + msg.rows[i].proName; +'</td>';
-							picHtml += '<td>' + msg.rows[i].updateTime; +'</td>';
-							picHtml += '<td>' + msg.rows[i].interviewFeedback; +'</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].interview + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].name + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].phone + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].status + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].proName; +'</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].updateTime; +'</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].interviewFeedback; +'</td>';
 							picHtml += '<td>' + '<input type="button" value="查看面试邀请" style="width:100px; border-radius: 5px; " />' + '<td>'
 							picHtml += '</tr>'; 
 							
@@ -170,14 +170,14 @@
 				"proName": proName,
 				"post": post,
 				"phone": phone,
-				"starTime": starTime,
+				"interview": starTime,
 				"proPersonId": proPersonId
 			}
 			alert(proDis)
 			//alert("aaa");
 			$.ajax({
 				//这里填写你在服务器上面的IP/域名         后台提供接口
-				url: "/system/project/add",
+				url: "/system/resume/add",
 				//请求方式
 				method: "post",
 				//请求参数的格式
