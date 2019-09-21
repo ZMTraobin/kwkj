@@ -89,13 +89,54 @@
 <input type="button" value="提交offer" style="width: 100px; " />
 
 	</form>
+	
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+		style="background-color:white;">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">新建面试信息</h4>
+					<form id="sortForm">
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>姓名</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="name" /> </td>
+								</tr>
+								<tr>
+									<td>项目</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="proName" /> </td>
+								</tr>
+								<tr>
+									<td>职位</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="post" /> </td>
+								</tr>
+								<tr>
+									<td>电话</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="phone" /> </td>
+								</tr>
+								<tr>
+									<td>面试时间</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="starTime" /> </td>
+								</tr>
+								<tr>
+									<td>联系人</td>
+									<td> <input type="text" size="40" style="height: 25px;" id="proPersonId" /> </td>
+								</tr>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+							<input type="submit" class="btn btn-primary" data-dismiss="modal" id="reject"></input>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script>
-		// alert("12345678");
-		$("#search").click(function () {
-			alert("111")
-			console.log(111)
-		});
 
 		$("#search").click(function () {
 			//alert("aaa");
@@ -212,51 +253,6 @@
 		});
 	</script>
 
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-		style="background-color:white;">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">新建面试信息</h4>
-					<form id="sortForm">
-						<div class="modal-body">
-							<table>
-								<tr>
-									<td>姓名</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="name" /> </td>
-								</tr>
-								<tr>
-									<td>项目</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="proName" /> </td>
-								</tr>
-								<tr>
-									<td>职位</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="post" /> </td>
-								</tr>
-								<tr>
-									<td>电话</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="phone" /> </td>
-								</tr>
-								<tr>
-									<td>面试时间</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="starTime" /> </td>
-								</tr>
-								<tr>
-									<td>联系人</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="proPersonId" /> </td>
-								</tr>
-							</table>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<input type="submit" class="btn btn-primary" data-dismiss="modal" id="reject"></input>
-						</div>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
 
 </body>
 

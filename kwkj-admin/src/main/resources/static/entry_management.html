@@ -79,6 +79,7 @@
 							picHtml += '<td class="yes">' + msg.rows[i].age + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].phone + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].eamil + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].qq + '</td>';
 							picHtml += '</tr>';
 							$("#table").append(picHtml)
 							//  alert(picHtml)
@@ -92,20 +93,51 @@
 			
 		});
 		
-		$("#new").click(function(){
+		$("#reject").click(function(){
 			var name=$("#name").val();
-			var action=$("#action").find("option:selected").attr("value");
+			var personCharge=$("#zp").val();
+			var sex=$("input[type='radio']:checked").val();
+			var inTime=$("#start").val();
+			var regularTime=$("#worktime").val();
+			var contractEndTime=$("#end").val();
+			var situation=$("#sb").val();
+			var birthDate=$("#brithday").val();
+			var idCard=$("#sfz").val();
+			var age=$("#age").val();
+			var phone=$("#phone").val();
+			var email=$("#email").val();
+			var qq=$("#qq").val();
+			var marryInfo=$("#hy").val();
+			var addr=$("#jg").val();
+			var school=$("#school").val();
+			var edu=$("#xl").val();
+			var major=$("#zy").val();
+			var addr=$("#address").val();
+			var proId=$("#xm").val();
 			var post=$("#post").val();
-			var salary=$("#salary").val();
-			var pro=$("#pro").val();
-			var time=$("#time").val();
+			var remark=$("#proRemark").val();
 			var data={
 					"name":name,
-					"status":action,
+					"personCharge":action,
+					"sex":post,
+					"inTime":salary,
+					"regularTime":regularTime,
+					"contractEndTime":contractEndTime,
+					"situation":situation,
+					"birthDate":birthDate,
+					"idCard":idCard,
+					"age":age,
+					"phone":phone,
+					"email":email,
+					"qq":qq,
+					"marryInfo":marryInfo,
+					"addr":addr,
+					"school":school,
+					"major":major,
+					"addr":addr,
+					"proId":proId,
 					"post":post,
-					"salary":salary,
-					"proId":pro,
-					"inTime":time
+					"remark":remark,				
 			}
 			$.ajax({
 				//这里填写你在服务器上面的IP/域名         后台提供接口
@@ -124,14 +156,44 @@
 						var list = msg.data;
 						var picHtml = "";
 						for (var i = 0; i < list.length; i++) {
-							picHtml = '<tr>';
+					/*		picHtml = '<tr>';
 							picHtml += '<td>' + msg.rows[i].name + '</td>';
-							picHtml += '<td>' + msg.rows[i].status + '</td>';
-							picHtml += '<td>' + msg.rows[i].post + '</td>';
-							picHtml += '<td>' + msg.rows[i].salary + '</td>';
-							picHtml += '<td>' + msg.rows[i].proId + '</td>';
+							picHtml += '<td>' + msg.rows[i].personCharge + '</td>';
+							picHtml += '<td>' + msg.rows[i].sex + '</td>';
 							picHtml += '<td>' + msg.rows[i].inTime + '</td>';
+							picHtml += '<td>' + msg.rows[i].regularTime + '</td>';
+							picHtml += '<td>' + msg.rows[i].contractEndTime + '</td>';
+							picHtml += '<td>' + msg.rows[i].situation + '</td>';
+							picHtml += '<td>' + msg.rows[i].birthDate + '</td>';
+							picHtml += '<td>' + msg.rows[i].idCard + '</td>';
+							picHtml += '<td>' + msg.rows[i].age + '</td>';
+							picHtml += '<td>' + msg.rows[i].phone + '</td>';
+							picHtml += '<td>' + msg.rows[i].email + '</td>';
+							picHtml += '<td>' + msg.rows[i].qq + '</td>';
+							picHtml += '<td>' + msg.rows[i].marryInfo + '</td>';
+							picHtml += '<td>' + msg.rows[i].addr + '</td>';
+							picHtml += '<td>' + msg.rows[i].school + '</td>';
+							picHtml += '<td>' + msg.rows[i].major + '</td>';
+							picHtml += '<td>' + msg.rows[i].addr + '</td>';
+							picHtml += '<td>' + msg.rows[i].proId + '</td>';
+							picHtml += '<td>' + msg.rows[i].post + '</td>';
+							picHtml += '<td>' + msg.rows[i].remark + '</td>';
 							picHtml += '</tr>';
+			 */
+			                picHtml = '<tr>';
+			                picHtml += '<td class="yes">' + msg.rows[i].name + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].personCharge + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].inTime + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].regularTime + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].contractEndTime+ '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].situation + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].idCard + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].age + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].phone + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].eamil + '</td>';
+			                picHtml += '<td class="yes">' + msg.rows[i].qq + '</td>';
+			               	picHtml += '</tr>';
 							$("#table").append(picHtml)
 							//  alert(picHtml)
 						}
@@ -176,49 +238,49 @@
 				</tr>
 				<tr>
 					<td>上社保日期</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="sb" /> </td>
 					<td>在职天数</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="intime" /> </td>
 					<td>出生日期</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="brithday" /> </td>
 				</tr>
 				<tr>
 					<td>身份证号码</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="sfz" /> </td>
 					<td>年龄</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="age" /> </td>
 				</tr>
 				<tr>
 					<td>联系电话</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="phone" /> </td>
 					<td>个人邮箱</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="email" /> </td>
 					<td>QQ号码</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="qq" /> </td>
 				</tr>
 				<tr>
 					<td>婚姻状况</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="hy" /> </td>
 					<td>户口性质</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="hk" /> </td>
 					<td>籍贯</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="jg" /> </td>
 				</tr>
 				<tr>
 					<td>毕业院校</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="school" /> </td>
 					<td>学历</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="xl" /> </td>
 					<td>专业</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="zy" /> </td>
 				</tr>
 				<tr>
 					<td>现住址</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="address" /> </td>
 					<td>现项目</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="xm" /> </td>
 					<td>职位</td>
-					<td> <input type="text" size="20" style="height: 25px;" id="" /> </td>
+					<td> <input type="text" size="20" style="height: 25px;" id="post" /> </td>
 				</tr>
 				<tr>
 					<td>备注</td>

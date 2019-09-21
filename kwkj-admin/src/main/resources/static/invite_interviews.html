@@ -134,8 +134,7 @@
 							//alert(some)	
 							//alert(act)	
 							console.log(data)
-							$
-									.ajax({
+							$.ajax({
 										//这里填写你在服务器上面的IP/域名         后台提供接口
 										url : "http://127.0.0.1/system/resume/list",
 										//请求方式
@@ -203,6 +202,31 @@
 									});
 
 						});
+		
+		function request1(){
+			var interview=$(".datetime").val();
+			var data = {
+					"interview":interview
+			}
+			$.ajax({
+				//这里填写你在服务器上面的IP/域名         后台提供接口
+				url : "http://127.0.0.1/system/resume/list",
+				//请求方式
+				method : "post",
+				//请求参数的格式
+				data : JSON.stringify(data),
+				//内容结构
+				contentType : "application/json;charset=UTF-8",
+				//请求数的类型
+				dataType : "json",
+				//返回值
+				success : function(mg) {				
+				},
+				error : function() {
+				}
+				
+			});
+		}
 	</script>
 
 </body>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>离职管理页面</title>
+			<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+		
+		<style>
+		body {
+			margin: 20px;
+			background-color: #E1F1FE;
+		}
+				td{
+					padding:8px;
+				}
+				
+               .yes{
+               	border: solid #000000 1px;
+               }
+			</style>
+		
+	</head>
+	<body>
+		姓名：<input type="text" size="15" id="name" style="margin-right: 20px;"/>
+		所属部门： <input type="text" size="15" id="department" style="margin-right: 20px;"/>
+		职务：<input type="text" size="15" id="post"style="margin-right: 20px;"/>
+		<input type="button" name="ss" id="ss" value="搜索" />
+		</br></br>
+		<input type="button" value="新建离职记录" id="new" style="width:100px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/>
+	<table id="table" cellspacing="0" style="border-collapse:collapse; ">
+			<tr>
+				<td class="yes">姓名</td>
+				<td class="yes">性别</td>
+				<td class="yes">所属部门</td>
+				<td class="yes">职务</td>
+				<td class="yes">入职日期</td>
+				<td class="yes">最后出勤日期</td>
+				<td class="yes">离职原因</td>
+				<td class="yes">部门审核</td>
+				<td class="yes">财务审核</td>
+				<td class="yes">人事审核</td>
+				<td class="yes">总经理审核</td>
+				<td class="yes">是否完成交接</td>
+			</tr>
+		</table>
+	
+	<script>
+		$("#ss").click(function(){
+			var name=$("#name").val();	
+			var department=$("#department").val();
+			var post=$("#post").val();
+			var data={				
+					"name":name,
+					"department":department,
+					"post":post
+			}			
+			$.ajax({
+				//这里填写你在服务器上面的IP/域名         后台提供接口
+				url: "/system/matters/list",
+				//请求方式
+				method: "post",
+				//请求参数的格式
+				data: JSON.stringify(data),
+				//内容结构
+				contentType: "application/json;charset=UTF-8",
+				//请求数的类型
+				dataType: "json",
+				//返回值
+				success: function (msg) {
+					if (msg) {
+						var list = msg.rows;
+						var picHtml = "";
+						for (var i = 0; i < list.length; i++) {
+							picHtml = '<tr>';
+							picHtml += '<td class="yes">' + msg.rows[i].name + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].sex + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].department + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].post + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].inTime+ '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].quit + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].remark + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].situation + '</td>';
+							picHtml += '</tr>';
+							$("#table").append(picHtml)
+							//  alert(picHtml)
+						}
+					}
+				},
+				error: function () {
+
+				}
+			});
+			
+		});
+		
+		$("#reject").click(function(){
+			var name=$("#name").val();
+			var sex=$("#name").find("option:selected").attr("value");
+			var post=$("#post").val();
+			var inTime=$("#start").val();
+			var quit=$("#worktime").val();
+			var remark=$("#proRemark").val();
+			var data={
+					"name":name,
+					"sex":sex,
+					"post":post,
+					"inTime":inTime,
+					"quit":quit,
+					"remark":remark
+			}
+			$.ajax({
+				//这里填写你在服务器上面的IP/域名         后台提供接口
+				url: "/system/resume/add",
+				//请求方式
+				method: "post",
+				//请求参数的格式
+				data: JSON.stringify(data),
+				//内容结构
+				contentType: "application/json;charset=UTF-8",
+				//请求数的类型
+				dataType: "json",
+				//返回值
+				success: function (msg) {
+					if (msg) {
+						var list = msg.data;
+						var picHtml = "";
+						for (var i = 0; i < list.length; i++) {
+							picHtml = '<tr>';
+							picHtml += '<td class="yes">' + msg.rows[i].name + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].sex + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].department + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].post + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].inTime+ '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].quit + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].remark + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i]. + '</td>';
+							picHtml += '<td class="yes">' + msg.rows[i].situation + '</td>';
+							picHtml += '</tr>';
+							$("#table").append(picHtml)
+							//  alert(picHtml)
+						}
+					}
+				},
+				error: function () {
+
+				}
+			});
+		});
+		
+	</script>
+	
+		 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:white;">				
+	<div class="modal-dialog" >
+        <div class="modal-content" style="width:900px">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">人事信息</h4>
+        <form id="sortForm">
+            <div class="modal-body">
+            	<table>
+				<tr>
+					<td>姓名</td>
+					<td><input type="text" size="20" style="height: 25px;" id="name" /> </td>
+				    <td colspan="2">性别&nbsp;&nbsp;&nbsp;
+				    	<input type="radio" name="sex" value="1" />男
+				    	<input type="radio" name="sex" value="2" />女
+				    </td>
+				    <td>
+				    	职务 <input type="text" size="20" id="post"/>
+				    </td>
+				</tr>
+				<tr>
+					<td>入职时间</td>
+					<td> <input type="text" size="20" style="height: 25px;" id="start" /> </td>
+					<td>最后出勤日期</td>
+					<td> <input type="text" size="20" style="height: 25px;" id="worktime" /> </td>
+				</tr>											
+				<tr>
+					<td>离职原因</td>
+					<td colspan="4">
+						 <textarea cols="75" rows="8" id="proRemark" /></textarea> 
+					</td>					
+				</tr>
+				<tr>
+					<td>离职恳谈记录</td>
+					<td colspan="4">
+						 <textarea cols="75" rows="8" id="pk" /></textarea> 
+					</td>					
+				</tr>
+			</table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <input type="submit" class="btn btn-primary"  data-dismiss="modal" id="reject"></input>
+            </div>
+           </form>
+         </div>
+			</div>
+		</div>
+	</div>
+	
+	
+	</body>
+</html>
