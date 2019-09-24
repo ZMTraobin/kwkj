@@ -7,9 +7,9 @@
 <!-- <link rel="stylesheet"
 	href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script> -->
+
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
-<script
-	src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script src="js/dateTime.min.js"></script>
 <link rel="stylesheet" href="css/dateTime.css">
@@ -89,7 +89,7 @@
 					<option value="5">未通过</option>
 			</select></td>
 			<td>&nbsp;&nbsp;&nbsp;</td>
-			<td><input type="button" value="搜索" class="search"/></td>
+			<td><input type="button" value="搜索" class="search1"/></td>
 		</tr>
 
 	</table>
@@ -112,7 +112,7 @@
 
 
 	<script>
-		$(".search")
+		$(".search1")
 				.click(
 						function() {
 							alert(123)
@@ -203,6 +203,11 @@
 
 						});
 		
+$('.datetime').on('click',function(){
+	alert(nih)
+	alert(123)
+});
+
 		function request1(){
 			var interview=$(".datetime").val();
 			var data = {
@@ -227,6 +232,8 @@
 				
 			});
 		}
+		
+		
 	</script>
 
 </body>

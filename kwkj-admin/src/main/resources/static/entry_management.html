@@ -42,7 +42,7 @@
 				<td class="yes">QQ</td>
 			</tr>
 		</table>
-		<input type="button" value="新建入职" id="new" style="width:100px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/>
+		<input type="button" value="查看待入职" id="new" style="width:100px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/>
 	
 	<script>
 		$("#ss").click(function(){
@@ -80,6 +80,8 @@
 							picHtml += '<td class="yes">' + msg.rows[i].phone + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].eamil + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].qq + '</td>';
+							picHtml += '<td class="yes"><input type="button" value="查看简历信息" id="new" style="width:60px; border-radius: 4px; height: 25px; ">'
+							+'<input type="button" value="申请离职" id="new" style="width:60px; border-radius: 4px; height: 25px; ">'+'</td>';
 							picHtml += '</tr>';
 							$("#table").append(picHtml)
 							//  alert(picHtml)

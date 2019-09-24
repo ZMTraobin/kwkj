@@ -49,7 +49,6 @@
 				<tr>
 					<td colspan="4" style="text-align: center;">
 						<input type="button" value="搜索" id="ss" style="width:100px; border-radius: 4px; height: 25px; " />
-						<input type="button" value="新建offer" id="new" style="width:100px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/>
 					</td>
 				</tr>
 			</table>
@@ -108,8 +107,8 @@
 							picHtml += '<td class="yes">' + msg.rows[i].inTime + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].personCharge + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].phone + '</td>';
-							picHtml += '<td class="yes">' + msg.rows[i].remark + '</td>';
-							picHtml += '<td>' +' <input type="button"  value="修改" /> ' + '</td>';
+							picHtml += '<td class="yes"><input type="button" value="查看" id="new" style="width:60px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/></td>';
+							picHtml += '<td>' +' <input type="button"  value="确认入职" /> ' + '</td>';
 							picHtml += '</tr>';
 							$("#table").append(picHtml)
 							//  alert(picHtml)
