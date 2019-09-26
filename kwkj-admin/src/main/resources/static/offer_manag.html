@@ -122,102 +122,20 @@
 			
 		});
 		
-		$("#reject").click(function(){
-			var name=$("#name").val();
-			var action=$("#action").find("option:selected").attr("value");
-			var post=$("#post").val();
-			var salary=$("#salary").val();
-			var pro=$("#pro").val();
-			var time=$("#time").val();
-			var data={
-					"name":name,
-					"status":action,
-					"post":post,
-					"salary":salary,
-					"proId":pro,
-					"inTime":time
-			}
-			$.ajax({
-				//这里填写你在服务器上面的IP/域名         后台提供接口
-				url: "/system/resume/add",
-				//请求方式
-				method: "post",
-				//请求参数的格式
-				data: JSON.stringify(data),
-				//内容结构
-				contentType: "application/json;charset=UTF-8",
-				//请求数的类型
-				dataType: "json",
-				//返回值
-				success: function (msg) {
-					if (msg) {
-						var list = msg.data;
-						var picHtml = "";
-						for (var i = 0; i < list.length; i++) {
-							picHtml = '<tr>';
-							picHtml += '<td>' + msg.rows[i].name + '</td>';
-							picHtml += '<td>' + msg.rows[i].status + '</td>';
-							picHtml += '<td>' + msg.rows[i].post + '</td>';
-							picHtml += '<td>' + msg.rows[i].salary + '</td>';
-							picHtml += '<td>' + msg.rows[i].proId + '</td>';
-							picHtml += '<td>' + msg.rows[i].inTime + '</td>';
-							picHtml += '</tr>';
-							$("#table").append(picHtml)
-							//  alert(picHtml)
-						}
-					}
-				},
-				error: function () {
-
-				}
-			});
-		});
 		
 	</script>
 	
 		
 		
-			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="background-color:white;">				
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >				
 	<div class="modal-dialog" >
         <div class="modal-content" >
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">新建offer页面</h4>
+                <h4 class="modal-title" id="myModalLabel">备注</h4>
         <form id="sortForm">
             <div class="modal-body">
-            	<table>
-				<tr>
-					<td>姓名</td>
-					<td> <input type="text" size="40" style="height: 25px;" id="name" /> </td>
-				</tr>
-				<tr>
-					<td>状态</td>
-					<td> 
-					 <select id="action" style="width: 90px;">
-							<option value="1" selected="selected">不限</option>
-							<option value="2">已发offer</option>
-							<option value="3">未入职</option>
-							<option value="4">已入职</option>
-						</select>		
-					</td>
-				</tr>
-				<tr>
-					<td>职位</td>
-					<td> <input type="text" size="40" style="height: 25px;" id="post" /> </td>
-				</tr>
-				<tr>
-					<td>薪资</td>
-					<td> <input type="text" size="40" style="height: 25px;" id="salary" /> </td>
-				</tr>
-				<tr>
-					<td>项目</td>
-					<td> <input type="text" size="40" style="height: 25px;" id="pro" /> </td>
-				</tr>
-				<tr>
-					<td>入职时间</td>
-					<td> <input type="text" size="40" style="height: 25px;" id="time" /> </td>
-				</tr>		
-			</table>
+            	msg.row[i].remark
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>

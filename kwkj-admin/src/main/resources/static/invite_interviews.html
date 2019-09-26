@@ -109,18 +109,14 @@
 		</tr>
 
 	</table>
-
-
+	
 	<script>
-		$(".search1")
-				.click(
+		$(".search1").click(
 						function() {
 							alert(123)
 							var wel = $("#work").val();
-							var some = $("#time").find("option:selected").attr(
-									"value");
-							var act = $("#action").find("option:selected")
-									.attr('value');
+							var some = $("#time").find("option:selected").attr("value");
+							var act = $("#action").find("option:selected").attr('value');
 							var data = {
 								/*	"post":$(".work").val(),
 									"time": $("#time").find("option:selected").attr("value"),//这个才是获取select的value值的正确方法，这个是特殊的，其他的不用这么麻烦
@@ -178,7 +174,7 @@
 													picHtml += '<td class="yes">'
 															+ mg.rows[i].resFeedback
 															+ '</td>';
-													picHtml += '<td class="yes"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div></td>';
+													picHtml += '<td class="yes"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div><input type="button" value="录入"style="width:100px; height: 20px;"/></td>';
 													picHtml += '</tr>';
 													$("#table").append(picHtml)
 													alert(picHtml)
