@@ -15,6 +15,7 @@
 			background-color: #E1F1FE;
 		}
 				td{
+				 text-align:center;
 					padding:8px;
 				}
 				
@@ -53,7 +54,7 @@
 				</tr>
 			</table>
 			
-			<table width="650" height="35" cellspacing="0" style="border-collapse:collapse; " id="table">
+			<table width="750" height="20" cellspacing="0" style="border-collapse:collapse; " id="table">
 				<tr>
 					<td class="yes">状态</td>
 					<td class="yes">姓名</td>
@@ -64,7 +65,7 @@
 					<td class="yes">推送人</td>
 					<td class="yes">联系方式</td>
 					<td class="yes">备注</td>
-					<td></td>
+					<td class="yes">操作</td>
 				</tr>
 			</table>		
 	
@@ -107,8 +108,8 @@
 							picHtml += '<td class="yes">' + msg.rows[i].inTime + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].personCharge + '</td>';
 							picHtml += '<td class="yes">' + msg.rows[i].phone + '</td>';
-							picHtml += '<td class="yes"><input type="button" value="查看" id="new" style="width:60px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/></td>';
-							picHtml += '<td>' +' <input type="button"  value="确认入职" /> ' + '</td>';
+							picHtml += '<td class="yes"><input type="button" value="查看" class="new" onclick="show(' + msg.rows[i].resId + ')" style="width:60px; border-radius: 4px; height: 25px; " data-toggle="modal" data-target="#myModal"/></td>';
+							picHtml += '<td class="yes">' +' <input type="button"  value="确认入职" /> ' + '</td>';
 							picHtml += '</tr>';
 							$("#table").append(picHtml)
 							//  alert(picHtml)
@@ -118,15 +119,43 @@
 				error: function () {
 
 				}
-			});
-			
+			});		
 		});
 		
-		
+		function show(s){
+			var data = {
+					"resId":s
+					}
+				//alert(proDis)
+				$.ajax({
+					//这里填写你在服务器上面的IP/域名         后台提供接口
+					url: "/system/resumeProccess/list",
+					//请求方式
+					method: "post",
+					//请求参数的格式
+					data: JSON.stringify(data),
+					//内容结构
+					contentType: "application/json;charset=UTF-8",
+					//请求数的类型
+					dataType: "json",
+					//返回值
+					success: function (msg) {
+						
+						if (msg) {
+							var picHtml = "";									
+							picHtml +=  msg.rows[0].remark ;							
+							$(".new").append(picHtml)
+							//  alert(picHtml)
+							console.log(picHtml)
+						}
+					},
+					error: function () {
+
+					}
+				});
+		}
 	</script>
 	
-		
-		
 			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >				
 	<div class="modal-dialog" >
         <div class="modal-content" >
@@ -135,7 +164,7 @@
                 <h4 class="modal-title" id="myModalLabel">备注</h4>
         <form id="sortForm">
             <div class="modal-body">
-            	msg.row[i].remark
+            	<div class="new"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
@@ -146,6 +175,7 @@
 			</div>
 		</div>
 	</div>	
+	
 		
 	</body>
 </html>

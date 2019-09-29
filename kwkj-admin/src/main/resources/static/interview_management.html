@@ -4,12 +4,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>面试管理</title>
-<!--  
+ 
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
 	<script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
--->	
+
 
 <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>	
 <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -83,10 +83,10 @@
 			<tr>
 				<td>面试时间
 					<select id="time" style="width: 90px;">
-						<option value="1" selected="selected">不限</option>
-						<option value="2">今天</option>
-						<option value="3">以后</option>
-						<option value="4">以前</option>
+						<option value="" selected="selected">不限</option>
+						<option value="1">今天</option>
+						<option value="2">以后</option>
+						<option value="3">以前</option>
 					</select>
 				</td>
 	<!-- 			<td>
@@ -119,52 +119,26 @@
 				<td class="yes">面试公司</td>
 				<td class="yes">更新时间</td>
 				<td class="yes">是否通过面试</td>
-				<td></td>
+				<td class="yes">操作</td>
 			</tr>
 			
 		</table>
 
 	</form>
 	
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-		style="background-color:white;">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
+			<div class="modal-content" style="width:340px;height:240px;" >
+				<div class="modal-header" style="width:340px;height:235px;">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="myModalLabel">新建面试信息</h4>
+					<h4 class="modal-title" id="myModalLabel">面试反馈</h4>
 					<form id="sortForm">
-						<div class="modal-body">
-							<table>
-								<tr>
-									<td>姓名</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="name" /> </td>
-								</tr>
-								<tr>
-									<td>项目</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="proName" /> </td>
-								</tr>
-								<tr>
-									<td>职位</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="post" /> </td>
-								</tr>
-								<tr>
-									<td>电话</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="phone" /> </td>
-								</tr>
-								<tr>
-									<td>面试时间</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="starTime" /> </td>
-								</tr>
-								<tr>
-									<td>联系人</td>
-									<td> <input type="text" size="40" style="height: 25px;" id="proPersonId" /> </td>
-								</tr>
-							</table>
+						<div class="modal-body"style="height:130px;">
+							<div class="new"></div>
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-							<input type="submit" class="btn btn-primary" data-dismiss="modal" id="reject"></input>
+						<!-- 	<input type="submit" class="btn btn-primary" data-dismiss="modal" id="reject"></input> -->
 						</div>
 					</form>
 				</div>
@@ -181,6 +155,7 @@
 			var hxr = $("#hxr").val();
 			var xm = $("#xm").val();
 			var time = $("#time").find("option:selected").attr("value");
+			alert(time)
 		//	var cot = $("input[name=act]:checked").val();
 			var data = {
 				"post": zw,
@@ -220,7 +195,7 @@
 							picHtml += '<td class="yes">' + msg.rows[i].proName; +'</td>';
 							picHtml += '<td class="yes"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div></td>';
 							picHtml += '<td class="yes">' + msg.rows[i].interviewFeedback; +'</td>';
-							picHtml += '<td>' + '<input type="button" value="查看面试反馈"style="width:100px; height: 20px;"class="search1" />'
+							picHtml += '<td class="yes">' + '<input type="button" onclick="show(' + msg.rows[i].resId + ')" value="查看面试反馈"style="width:100px; height: 20px;"class="search1" data-toggle="modal" data-target="#myModal"/>'
 							+ '<input type="button" value="发送offer" style="width:70px;height: 20px; margin-left: 15px;"class="search1" />' + '<td>'
 							picHtml += '</tr>'; 
 							
@@ -273,26 +248,14 @@
 			});
 		}
 
-		$("#reject").click(function () {
-			var name = $("#name").val();
-			var proName = $("#proName").val();
-			var post = $("#post").val();
-			var phone = $("#phone").val();
-			var starTime = $("#starTime").val();
-			var proPersonId = $("#proPersonId").val();
-			var data = {
-				"name": name,
-				"proName": proName,
-				"post": post,
-				"phone": phone,
-				"interview": starTime,
-				"proPersonId": proPersonId
-			}
-			alert(proDis)
-			//alert("aaa");
+	function show(s){
+		var data = {
+				"resId":s
+				}
+			//alert(proDis)
 			$.ajax({
 				//这里填写你在服务器上面的IP/域名         后台提供接口
-				url: "/system/resume/add",
+				url: "/system/resumeProccess/list",
 				//请求方式
 				method: "post",
 				//请求参数的格式
@@ -303,28 +266,21 @@
 				dataType: "json",
 				//返回值
 				success: function (msg) {
+					
 					if (msg) {
-						var list = msg.data;
-						var picHtml = "";
-						for (var i = 0; i < list.length; i++) {
-							picHtml = '<tr>';
-							picHtml += '<td>' + msg.rows[i].name + '</td>';
-							picHtml += '<td>' + msg.rows[i].proName + '</td>';
-							picHtml += '<td>' + msg.rows[i].post + '</td>';
-							picHtml += '<td>' + msg.rows[i].phone + '</td>';
-							picHtml += '<td>' + msg.rows[i].starTime + '</td>';
-							picHtml += '<td>' + msg.rows[i].proPersonId + '</td>';
-							picHtml += '</tr>';
-							$("#table").append(picHtml)
-							//  alert(picHtml)
-						}
+						var picHtml = "";									
+						picHtml +=  msg.rows[0].interviewFeedback ;							
+						$(".new").append(picHtml)
+						//  alert(picHtml)
+						console.log(picHtml)
 					}
 				},
 				error: function () {
 
 				}
 			});
-		});
+	}
+
 	</script>
 
 
