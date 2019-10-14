@@ -186,6 +186,7 @@
 					if (msg) {
 						var list = msg.rows;
 						var picHtml = "";
+						$("#table").html(msg);
 						for (var i = 0; i < list.length; i++) {
 							picHtml = '<tr>';
 							picHtml += '<td class="yes">' + msg.rows[i].interview + '</td>';
@@ -268,7 +269,8 @@
 				success: function (msg) {
 					
 					if (msg) {
-						var picHtml = "";									
+						var picHtml = "";	
+						$(".new").html(msg);
 						picHtml +=  msg.rows[0].interviewFeedback ;							
 						$(".new").append(picHtml)
 						//  alert(picHtml)

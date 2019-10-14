@@ -73,6 +73,7 @@
 					if (msg) {
 						var list = msg.rows;
 						var picHtml = "";
+						$("#table").html(msg);
 						for (var i = 0; i < list.length; i++) {
 							picHtml = '<tr>';
 							picHtml += '<td class="yes">' + msg.rows[i].name + '</td>';

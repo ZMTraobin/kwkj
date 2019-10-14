@@ -211,38 +211,40 @@ function functions(sh){
 			
 			if (msg) {
 				var picHtml = "";		
+				$(".new").html(msg);
 						picHtml += '<table>';
 						picHtml += '<tr>';
-						picHtml += '<td class="yes">姓名：' + msg.rows[0].name + '</td>';
-						picHtml += '<td class="yes">年龄：' + msg.rows[0].age + '岁</td>';
-						picHtml += '<td class="yes">应聘职位：' + msg.rows[0].post + '</td>';
+						picHtml += '<td >姓名：' + msg.rows[0].name + '</td>';
+						picHtml += '<td >年龄：' + msg.rows[0].age + '岁</td>';
+						picHtml += '<td >应聘职位：' + msg.rows[0].post + '</td>';
 						picHtml += '</tr>';
 						picHtml += '<tr>';
-						picHtml += '<td class="yes">工作年限：' + msg.rows[0].workYear + '年</td>';
-						picHtml += '<td class="yes">学历：' + msg.rows[0].edu + '</td>';
-						picHtml += '<td class="yes">住址：' + msg.rows[0].addr + '</td>';
+						picHtml += '<td >工作年限：' + msg.rows[0].workYear + '年</td>';
+						picHtml += '<td >学历：' + msg.rows[0].edu + '</td>';
+						picHtml += '<td >住址：' + msg.rows[0].addr + '</td>';
 						picHtml += '</tr>';
 						picHtml += '<tr>';
-						picHtml += '<td class="yes">学校：' + msg.rows[0].school + '</td>';
-						picHtml += '<td class="yes">专业：' + msg.rows[0].major + '</td>';
+						picHtml += '<td >学校：' + msg.rows[0].school + '</td>';
+						picHtml += '<td >专业：' + msg.rows[0].major + '</td>';
 						picHtml += '</tr>';
 						picHtml += '<tr>';
-						picHtml += '<td class="yes">电话：' + msg.rows[0].phone + '</td>';
-						picHtml += '<td class="yes">邮箱：' + msg.rows[0].email + '</td>';
+						picHtml += '<td >电话：' + msg.rows[0].phone + '</td>';
+						picHtml += '<td >邮箱：' + msg.rows[0].email + '</td>';
 						picHtml += '</tr>';
 						picHtml += '<tr>';
-						picHtml += '<td class="yes">状态：' + msg.rows[0].status + '</td>';
-						picHtml += '<td class="yes">面试次数：' + msg.rows[0].count + '</td>';
-						picHtml += '<td class="yes">面试时间：' + msg.rows[0].interview + '</td>';
+						picHtml += '<td >状态：' + msg.rows[0].status + '</td>';
+						picHtml += '<td >面试次数：' + msg.rows[0].count + '</td>';
+						picHtml += '<td >面试时间：' + msg.rows[0].interview + '</td>';
 						picHtml += '</tr>';
 						picHtml += '<tr>';
-						picHtml += '<td class="yes">技能：' + msg.rows[0].skill + '</td>';
-						picHtml += '<td class="yes">工作经验：' + msg.rows[0].workExperience + '</td>';
+						picHtml += '<td >技能：' + msg.rows[0].skill + '</td>';
+						picHtml += '<td >工作经验：' + msg.rows[0].workExperience + '</td>';
 						picHtml += '</tr>';
 						picHtml += '</table>';			
 						$(".new").append(picHtml)
 						//  alert(picHtml)
 						console.log(picHtml)
+						
 			}
 		},
 		error: function () {

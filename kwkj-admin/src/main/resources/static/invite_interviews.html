@@ -30,6 +30,20 @@
    line-height:25px;
    text-align:center;
 }
+.search2{
+	background-color: #e5e5e5; 
+	line-height: 20px;
+	border-radius: 1px;
+	width:60px;
+    border: 1px solid #808080;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    float: left;
+}
 </style>
 
 </head>
@@ -113,7 +127,7 @@
 	<script>
 		$(".search1").click(
 						function() {
-							alert(123)
+							//alert(123)
 							var wel = $("#work").val();
 							var some = $("#time").find("option:selected").attr("value");
 							var act = $("#action").find("option:selected").attr('value');
@@ -129,7 +143,7 @@
 							//alert(wel)	
 							//alert(some)	
 							//alert(act)	
-							console.log(data)
+							//console.log(data)
 							$.ajax({
 										//这里填写你在服务器上面的IP/域名         后台提供接口
 										url : "http://127.0.0.1/system/resume/list",
@@ -174,7 +188,7 @@
 													picHtml += '<td class="yes">'
 															+ mg.rows[i].resFeedback
 															+ '</td>';
-													picHtml += '<td class="yes"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div><input type="button" value="录入"style="width:100px; height: 20px;"/></td>';
+													picHtml += '<td class="yes"><div class="mycontainer"><input type="text" placeholder="请选择日期和时间" class="datetime"></div><input type="button" class="search2" value="录入"/></td>';
 													picHtml += '</tr>';
 													$("#table").append(picHtml)
 													alert(picHtml)
